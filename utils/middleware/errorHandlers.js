@@ -20,13 +20,13 @@ function wrapErrors(err, req, res, next){
 
 //funcionalidad: midleware q se encarga de imprimir nuestros errores
 function logErrors(err, req, res, next){
-    console.log(err);
+    console.log(err);   // eslint-disable-line
     next(err)
 
 }
 
 //midleware q me va ayudar a dar manejo al error
-function errorHandler(err, req, res, next){
+function errorHandler(err, req, res, next){ // eslint-disable-line
     const { output: { statusCode, payload } } = err;
 
     res.status(statusCode)

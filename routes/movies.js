@@ -12,17 +12,18 @@ const { FIVE_MINUTES_IN_SECONDS,SIXTY_MINUTES_IN_SECONDS } = require('../utils/t
 function moviesApi(app){
 
     const router = express.Router()
-    app.use("/api/movies", router)
+    app.use("/api/movies", router) //Establece la ruta base
 
     const moviesService = new MoviesService();
 
-    router.get("/", async function(req, res, next){
+    router.get("/", async function(req, res, next){   //get al home(/) que es (/api/movies)
         
         cacheResponse(res, FIVE_MINUTES_IN_SECONDS)
 
         const { tags } = req.query;
 
         try {
+            // const movies = await Promise.resolve(moviesMock)
             const movies = await moviesService.getMovies({ tags })
 
             //throw new Error('Error getting movies')
@@ -57,7 +58,7 @@ function moviesApi(app){
     })
 
     router.post("/", validationHandler(createMovieSchema) ,async function(req, res, next){
-        const { body: movie } = req
+        const { body: movie } = req //{body : movie}  ----> a body se le pone un alias ques es movie
         try {
             const createdMovieId = await moviesService.createMovie({ movie })
 

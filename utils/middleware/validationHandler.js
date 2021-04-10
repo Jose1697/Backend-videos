@@ -1,5 +1,5 @@
-const boom = require('@hapi/boom')
-const joi = require('@hapi/joi')
+const boom = require('@hapi/boom')   //sirve para validar datos
+const joi = require('@hapi/joi')       //Imprime errores comunes en peticiones HTTP
 
 
 function validate(data, schema){
